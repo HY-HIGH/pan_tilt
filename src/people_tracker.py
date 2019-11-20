@@ -118,7 +118,7 @@ if __name__ == "__main__":
         #     # Get the center of the face
         #     x = x + (w/2)
         #     y = y + (h/2)
-        x = center_position.x_mid * FRAME_W
+        x = (1-center_position.x_mid) * FRAME_W
         y = center_position.y_mid * FRAME_H 
 
         # Correct relative to center of image
