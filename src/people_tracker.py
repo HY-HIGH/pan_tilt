@@ -67,7 +67,7 @@ time.sleep(2)
 # Turn the camera to the default position
 pan(cam_pan-90)
 tilt(cam_tilt-90)
-# light_mode(WS2812)
+light_mode(WS2812)
 
 # def lights(r,g,b,w):
 #     for x in range(18):
