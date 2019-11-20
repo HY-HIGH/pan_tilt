@@ -83,7 +83,7 @@ if __name__ == "__main__":
         # This line lets you mount the camera the "right" way up, with neopixels above
         rasimage = frame
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
-        rasimage_msg.encoding="bgr8"
+        rasimage_msg.encoding="rgb8"
         pub.publish(rasimage_msg)
         frame = cv2.flip(frame, -1)
         
