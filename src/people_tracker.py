@@ -16,8 +16,8 @@ os.system('v4l2-ctl -p 8')
 # Frame Size. Smaller is faster, but less accurate.
 # Wide and short is better, since moving your head
 # vertically is kinda hard!
-FRAME_W = 720
-FRAME_H = 400
+FRAME_W = 360
+FRAME_H = 200
 
 # Default Pan/Tilt for the camera in degrees.
 # Camera range is from -90 to 90
