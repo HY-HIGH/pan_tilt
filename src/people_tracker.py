@@ -79,8 +79,8 @@ if __name__ == "__main__":
         frame = cv2.flip(frame, -1)
         
         if ret == False:
-        print("Error getting image")
-        continue
+            print("Error getting image")
+            continue
 
         # Convert to greyscale for detection
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             cam_tilt += turn_y
 
             #print(cam_pan-90, cam_tilt-90)
-        print(x,y)
+            print(x,y)
 
             # Clamp Pan/Tilt to 0 to 180 degrees
             cam_pan = max(0,min(180,cam_pan))
