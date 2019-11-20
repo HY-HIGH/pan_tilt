@@ -31,7 +31,7 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 #수정 부분
 center_position=MsgState()
 bridge=CvBridge()
-pub = rospy.Publisher('rasimage', Image, queue_size=100)
+pub = rospy.Publisher('rasimage', Image, queue_size=10)
 def centerpositonCB(msgdata):
     """To updateDrone's state 
     """
@@ -155,7 +155,7 @@ if __name__ == "__main__":
         # Display the image, with rectangle
         # on the Pi desktop 
         # cv2.imshow('Video', frame)
-        center_pose.getposition()
+        # center_pose.getposition()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     
