@@ -98,7 +98,7 @@ if __name__ == "__main__":
             flags=cv2.cv.CV_HAAR_SCALE_IMAGE | cv2.cv.CV_HAAR_FIND_BIGGEST_OBJECT | cv2.cv.CV_HAAR_DO_ROUGH_SEARCH
         )'''
         
-        lights(50 if len(faces) == 0 else 0, 50 if len(faces) > 0 else 0,0,50)
+        # lights(50 if len(faces) == 0 else 0, 50 if len(faces) > 0 else 0,0,50)
 
         for (x, y, w, h) in faces:
             # Draw a green rectangle around the face
