@@ -69,7 +69,6 @@ light_mode(WS2812)
 #     for x in range(18):
 #         set_pixel_rgbw(x,r if x in [3,4] else 0,g if x in [3,4] else 0,b,w if x in [0,1,6,7] else 0)
 #     show()
-
 # lights(0,0,0,50)
 if __name__ == "__main__":
     rospy.init_node('sub_center_position', anonymous=False)
