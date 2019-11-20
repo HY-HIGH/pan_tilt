@@ -5,6 +5,8 @@ import cv2, sys, time, os
 import rospy
 from pantilthat import *
 from pan_tilt.msg import MsgState
+from sensor_msgs.msg import Image #이미지 캡쳐
+from cv_bridge import CvBridge, CvBridgeError
 
 # Load the BCM V4l2 driver for /dev/video0
 os.system('sudo modprobe bcm2835-v4l2')
@@ -28,6 +30,8 @@ cascPath = '/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml'
 faceCascade = cv2.CascadeClassifier(cascPath)
 #수정 부분
 center_position=MsgState()
+bridge=CvBridge()
+pub = rospy.Publisher('rasimage', Image, queue_size=100)
 def centerpositonCB(msgdata):
     """To updateDrone's state 
     """
@@ -77,6 +81,10 @@ if __name__ == "__main__":
         # Capture frame-by-frame
         ret, frame = video_capture.read()
         # This line lets you mount the camera the "right" way up, with neopixels above
+        rasimage = frame
+        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
+        pub.publish(rasimage_msg)
+        
         frame = cv2.flip(frame, -1)
         
         if ret == False:
@@ -147,7 +155,8 @@ if __name__ == "__main__":
         center_pose.getposition()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-
+    ImagePub()
+    pub = rospy.Publisher('ras_image',rasimage,queue_size=10)
 # When everything is done, release the capture
 video_capture.release()
 cv2.destroyAllWindows()
