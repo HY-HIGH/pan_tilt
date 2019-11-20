@@ -71,6 +71,7 @@ light_mode(WS2812)
 #     show()
 # lights(0,0,0,50)
 if __name__ == "__main__":
+    center_pose=sub_center_position()
     rospy.init_node('sub_center_position', anonymous=False)
     while True:
         # Capture frame-by-frame
@@ -143,7 +144,7 @@ if __name__ == "__main__":
         # Display the image, with rectangle
         # on the Pi desktop 
         cv2.imshow('Video', frame)
-
+        center_pose.getposition()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
