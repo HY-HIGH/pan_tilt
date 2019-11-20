@@ -67,7 +67,7 @@ time.sleep(2)
 # Turn the camera to the default position
 pan(cam_pan-90)
 tilt(cam_tilt-90)
-light_mode(WS2812)
+# light_mode(WS2812)
 
 # def lights(r,g,b,w):
 #     for x in range(18):
@@ -81,7 +81,7 @@ if __name__ == "__main__":
         # Capture frame-by-frame
         ret, frame = video_capture.read()
         # This line lets you mount the camera the "right" way up, with neopixels above
-        frame = cv2.flip(frame, -1)
+        frame = cv2.flip(frame, 1)
         rasimage = frame
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
         rasimage_msg.encoding="rgb8"
@@ -91,21 +91,21 @@ if __name__ == "__main__":
             print("Error getting image")
             continue
 
-        # Convert to greyscale for detection
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.equalizeHist( gray )
+        # # Convert to greyscale for detection
+        # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # gray = cv2.equalizeHist( gray )
 
-        # Do face detection
-        faces = faceCascade.detectMultiScale(frame, 1.1, 3, 0, (10, 10))
+        # # Do face detection
+        # faces = faceCascade.detectMultiScale(frame, 1.1, 3, 0, (10, 10))
     
         # Slower method 
-        '''faces = faceCascade.detectMultiScale(
-            gray,
-            scaleFactor=1.1,
-            minNeighbors=4,
-            minSize=(20, 20),
-            flags=cv2.cv.CV_HAAR_SCALE_IMAGE | cv2.cv.CV_HAAR_FIND_BIGGEST_OBJECT | cv2.cv.CV_HAAR_DO_ROUGH_SEARCH
-        )'''
+        # '''faces = faceCascade.detectMultiScale(
+        #     gray,
+        #     scaleFactor=1.1,
+        #     minNeighbors=4,
+        #     minSize=(20, 20),
+        #     flags=cv2.cv.CV_HAAR_SCALE_IMAGE | cv2.cv.CV_HAAR_FIND_BIGGEST_OBJECT | cv2.cv.CV_HAAR_DO_ROUGH_SEARCH
+        # )'''
         
         # lights(50 if len(faces) == 0 else 0, 50 if len(faces) > 0 else 0,0,50)
 
@@ -146,17 +146,16 @@ if __name__ == "__main__":
 
             break
 
-        frame = cv2.resize(frame, (540,300))
-        frame = cv2.flip(frame, 1)
+        # frame = cv2.resize(frame, (540,300))
+        # frame = cv2.flip(frame, 1)
     
         # Display the image, with rectangle
         # on the Pi desktop 
-        cv2.imshow('Video', frame)
+        # cv2.imshow('Video', frame)
         center_pose.getposition()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    ImagePub()
-    pub = rospy.Publisher('ras_image',rasimage,queue_size=10)
+    
 # When everything is done, release the capture
 video_capture.release()
 cv2.destroyAllWindows()
