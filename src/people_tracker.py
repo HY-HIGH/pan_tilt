@@ -119,7 +119,7 @@ if __name__ == "__main__":
         #     x = x + (w/2)
         #     y = y + (h/2)
         x = (1-center_position.x_mid) * FRAME_W
-        y = (1-center_position.y_mid) * FRAME_H 
+        y = center_position.y_mid * FRAME_H 
 
         # Correct relative to center of image
         turn_x  = float(x - (FRAME_W/2))
