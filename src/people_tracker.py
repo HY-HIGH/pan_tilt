@@ -4,7 +4,7 @@
 import cv2, sys, time, os
 import rospy
 from pantilthat import *
-from tensorflow_object_detector.msg import MsgState
+from pan_tilt.msg import MsgState
 
 # Load the BCM V4l2 driver for /dev/video0
 os.system('sudo modprobe bcm2835-v4l2')
