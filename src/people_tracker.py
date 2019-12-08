@@ -20,7 +20,8 @@ FRAME_W = 180
 FRAME_H = 100
 
 # Default Pan/Tilt for the camera in degrees.
-# Camera range is from -90 to 90
+# Camera range is from -90 to 90 # 기본 angle
+
 cam_pan = 90
 cam_tilt = 60
 
@@ -28,8 +29,8 @@ cam_tilt = 60
 #cascPath = 'haarcascade_frontalface_default.xml' # sys.argv[1]
 cascPath = '/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml'
 faceCascade = cv2.CascadeClassifier(cascPath)
-#수정 부분
-center_position=MsgState()
+####################################수정 부분#################################################
+center_position=MsgState() 
 bridge=CvBridge()
 pub = rospy.Publisher('rasimage', Image, queue_size=10)
 def centerpositonCB(msgdata):
@@ -74,6 +75,7 @@ light_mode(WS2812)
 #         set_pixel_rgbw(x,r if x in [3,4] else 0,g if x in [3,4] else 0,b,w if x in [0,1,6,7] else 0)
 #     show()
 # lights(0,0,0,50)
+
 if __name__ == "__main__":
     center_pose=sub_center_position()
     rospy.init_node('sub_center_position', anonymous=False)
@@ -118,6 +120,8 @@ if __name__ == "__main__":
         #     # Get the center of the face
         #     x = x + (w/2)
         #     y = y + (h/2)
+        
+        #위치 포지셔닝 
         x = (1-center_position.x_mid) * FRAME_W
         y = center_position.y_mid * FRAME_H 
 
@@ -137,7 +141,7 @@ if __name__ == "__main__":
 
         #print(cam_pan-90, cam_tilt-90)
         print(x,y)
-
+        print(turn_x,turn_y)
         # Clamp Pan/Tilt to 0 to 180 degrees
         cam_pan = max(0,min(180,cam_pan))
         cam_tilt = max(0,min(180,cam_tilt))
