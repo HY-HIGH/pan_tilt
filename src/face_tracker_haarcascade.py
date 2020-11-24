@@ -67,10 +67,10 @@ if __name__ == "__main__":
         # rasimage_msg.encoding="mono8"
         # rasimage_pub.publish(rasimage_msg)
 
-        # cv2.imshow('img',img)
-        # k = cv2.waitKey(30) & 0xff
-        # if k == 27:
-        #     break
+        cv2.imshow('img',img)
+        k = cv2.waitKey(30) & 0xff
+        if k == 27:
+            break
 
     cap.release()
     # cv2.destroyAllWindows()
