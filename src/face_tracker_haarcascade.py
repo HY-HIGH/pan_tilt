@@ -48,15 +48,15 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
 
 
-            turn_x  = float(x - (gray.size().width/2))
-            turn_y  = float(y - (gray.size().height/2))
+            turn_x  = float(x - (float(gray.size().width)/2))
+            turn_y  = float(y - (float(gray.size().height)/2))
 
             turn_x   *= 2.5 # VFOV
             turn_y   *= 2.5 # HFOV
             cam_pan  += -turn_x
             cam_tilt += turn_y
-            pan(cam_pan) # Turn the camera to the default position
-            tilt(cam_tilt)
+            pan(int(cam_pan)) # Turn the camera to the default position
+            tilt(int(cam_tilt))
             
         rasimage = gray
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
