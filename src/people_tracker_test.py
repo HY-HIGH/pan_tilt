@@ -41,20 +41,16 @@ if __name__ == "__main__":
         img = cv2.flip(img, -1)
         img = cv2.flip(img, 1)
 
-        rasimage = img
-        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
-        rasimage_msg.encoding="rgb8"
-        rasimage_pub.publish(rasimage_msg)
 
         for (x,y,w,h) in faces:
             cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]
 
-        # cv2.imshow('img',img)
-        # k = cv2.waitKey(30) & 0xff
-        # if k == 27:
-        #     break
+        rasimage = img
+        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
+        rasimage_msg.encoding="rgb8"
+        rasimage_pub.publish(rasimage_msg)
 
     cap.release()
     # cv2.destroyAllWindows()
