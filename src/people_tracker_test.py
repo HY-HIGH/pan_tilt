@@ -43,11 +43,11 @@ if __name__ == "__main__":
 
 
         for (x,y,w,h) in faces:
-            img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+            gray = cv2.rectangle(gray,(x,y),(x+w,y+h),(255,0,0),2)
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]
             
-        rasimage = img
+        rasimage = gray
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
         rasimage_msg.encoding="rgb8"
         rasimage_pub.publish(rasimage_msg)
