@@ -58,6 +58,8 @@ class sub_center_position:
 
 # Set up the capture with our frame size
 video_capture = cv2.VideoCapture(0)
+#video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,  FRAME_W)
+#video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, FRAME_H)
 
 video_capture.set(cv2.CAP_PROP_FRAME_WIDTH,  FRAME_W)
 video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_H)
@@ -68,6 +70,11 @@ pan(cam_pan-90)
 tilt(cam_tilt-90)
 light_mode(WS2812)
 
+# def lights(r,g,b,w):
+#     for x in range(18):
+#         set_pixel_rgbw(x,r if x in [3,4] else 0,g if x in [3,4] else 0,b,w if x in [0,1,6,7] else 0)
+#     show()
+# lights(0,0,0,50)
 
 if __name__ == "__main__":
     center_pose=sub_center_position()
@@ -82,6 +89,37 @@ if __name__ == "__main__":
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
         rasimage_msg.encoding="rgb8"
         pub.publish(rasimage_msg)
+        
+        
+
+        # # Convert to greyscale for detection
+        # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # gray = cv2.equalizeHist( gray )
+
+        # # Do face detection
+        # faces = faceCascade.detectMultiScale(frame, 1.1, 3, 0, (10, 10))
+    
+        # Slower method 
+        # '''faces = faceCascade.detectMultiScale(
+        #     gray,
+        #     scaleFactor=1.1,
+        #     minNeighbors=4,
+        #     minSize=(20, 20),
+        #     flags=cv2.cv.CV_HAAR_SCALE_IMAGE | cv2.cv.CV_HAAR_FIND_BIGGEST_OBJECT | cv2.cv.CV_HAAR_DO_ROUGH_SEARCH
+        # )'''
+        
+        # lights(50 if len(faces) == 0 else 0, 50 if len(faces) > 0 else 0,0,50)
+################################################
+################################################
+        # for (x, y, w, h) in faces:
+        #     # Draw a green rectangle around the face
+        #     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+        #     # Track first face
+            
+        #     # Get the center of the face
+        #     x = x + (w/2)
+        #     y = y + (h/2)
         
         #위치 포지셔닝 
         x = (1-center_position.x_mid) * FRAME_W
