@@ -47,8 +47,8 @@ video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_H)
 for cnt in range(0, iteration_count):
  
     # Read the image
-    # image = cv2.imread(imagePath)
-    gray = cv2.cvtColor(video_capture, cv2.COLOR_BGR2GRAY)
+    image = cv2.imread(video_capture)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
  
     # Detect faces in the image
     faces = faceCascade.detectMultiScale(
