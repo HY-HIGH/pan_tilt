@@ -24,9 +24,9 @@ bridge=CvBridge()
 rasimage_pub = rospy.Publisher('rasimage', Image, queue_size=10)
 
 
-cam_pan = 90
+cam_pan = 0
 cam_tilt = 50
-pan(cam_pan-90) # Turn the camera to the default position
+pan(cam_pan) # Turn the camera to the default position
 tilt(cam_tilt)
 light_mode(WS2812)
 
@@ -60,6 +60,8 @@ if __name__ == "__main__":
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
             
+            print("x : ", cam_pan)
+            print("y : ", cam_tilt)
         rasimage = gray
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
         rasimage_msg.encoding="mono8"
