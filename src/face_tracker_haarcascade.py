@@ -35,6 +35,7 @@ if __name__ == "__main__":
 
     while not rospy.is_shutdown():
         ret, img = cap.read()
+        height, width, channels = img.shape 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.flip(gray, -1)
         gray = cv2.flip(gray, 1)
@@ -48,8 +49,8 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
 
 
-            turn_x  = x - (gray.cols/2.0)
-            turn_y  = y - (gray.rows/2.0)
+            turn_x  = x - (height/2.0)
+            turn_y  = y - (width/2.0)
 
             turn_x   *= 2.5 # VFOV
             turn_y   *= 2.5 # HFOV
