@@ -74,9 +74,9 @@ if __name__ == "__main__":
             if dt < 10 :
                 cam_pan  += pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
                 cam_tilt += pid.kP * error_y + pid.kD * de_y / dt + pid.kI * error_y * dt
-
-                pan(cam_pan) # Turn the camera to the default position
-                tilt(cam_tilt)
+                if (cam_pan >= -90 and cam_pan <= 90) and (cam_tilt >= -90 and cam_tilt <= 90) : 
+                    pan(cam_pan) # Turn the camera to the default position
+                    tilt(cam_tilt)
             
             error_x_prev = error_x
             error_y_prev = error_y
