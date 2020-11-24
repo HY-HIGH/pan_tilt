@@ -25,9 +25,9 @@ rasimage_pub = rospy.Publisher('rasimage', Image, queue_size=10)
 
 
 cam_pan = 0
-cam_tilt = 0
-pan(cam_pan-90) # Turn the camera to the default position
-tilt(cam_tilt-90)
+cam_tilt = 60
+pan(cam_pan) # Turn the camera to the default position
+tilt(cam_tilt)
 light_mode(WS2812)
 
 if __name__ == "__main__":
