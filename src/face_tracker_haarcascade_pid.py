@@ -42,7 +42,7 @@ if __name__ == "__main__":
     error_x_prev = 0.
     error_y_prev = 0.
     time_prev = 0.
-
+    dt_sleep = 0.01
 
     while cap is not None:
         ret, img = cap.read()
@@ -51,6 +51,7 @@ if __name__ == "__main__":
         gray = cv2.flip(gray, 1)
         height, width = gray.shape
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        time_cur = time.time()
         
         for (x,y,w,h) in faces:
             gray = cv2.rectangle(gray,(x,y),(x+w,y+h),(255,0,0),2)
@@ -59,14 +60,14 @@ if __name__ == "__main__":
 
             error_x  = (x+w/2.0) - (width/2.0)
             error_y  = (y+h/2.0) - (height/2.0)
-
-            de_x = error_x - error_x_prev
-            de_y = error_y - error_y_prev
-            dt = time.time() - time_prev
-
             error_x  /= (width/2.0) # VFOV
             error_y  /= (height/2.0) # HFOV
 
+            de_x = error_x - error_x_prev
+            de_y = error_y - error_y_prev
+            dt = time_cur - time_prev
+            # cam_pan  += error_x * 5
+            # cam_tilt += error_y * 5
             # pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
 
             cam_pan  += pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
@@ -75,6 +76,10 @@ if __name__ == "__main__":
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
             
+            error_x_prev = error_x
+            error_y_prev = error_y
+            time_prev = time_cur
+
             print("width : ",width , "height : ", height)
             print("box_x : ",x , "box_y : ", y)
             print("x : ", cam_pan, "y : ", cam_tilt)
@@ -85,6 +90,8 @@ if __name__ == "__main__":
         # rasimage_pub.publish(rasimage_msg)
 
         cv2.imshow('img',img)
+        time.sleep(dt_sleep)
+
         k = cv2.waitKey(30) & 0xff
         if k == 27:
             break
