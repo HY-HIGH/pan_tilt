@@ -39,7 +39,8 @@ if __name__ == "__main__":
     pid = PID(5, 0.5, 0)
 
     start_time = time.time()
-    error_prev = 0.
+    error_x_prev = 0.
+    error_y_prev = 0.
     time_prev = 0.
 
 
