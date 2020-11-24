@@ -5,8 +5,8 @@ import numpy as np
 import cv2, sys, time, os
 from pantilthat import *
 from pan_tilt.msg import MsgState
-from sensor_msgs.msg import Image #이미지 캡쳐
-from cv_bridge import CvBridge, CvBridgeError
+# from sensor_msgs.msg import Image #이미지 캡쳐
+# from cv_bridge import CvBridge, CvBridgeError
 
 
 class PID:
