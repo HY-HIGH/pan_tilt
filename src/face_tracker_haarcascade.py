@@ -24,9 +24,9 @@ bridge=CvBridge()
 rasimage_pub = rospy.Publisher('rasimage', Image, queue_size=10)
 
 
-cam_pan = 0
+cam_pan = 90
 cam_tilt = 50
-pan(cam_pan) # Turn the camera to the default position
+pan(cam_pan-90) # Turn the camera to the default position
 tilt(cam_tilt)
 light_mode(WS2812)
 
@@ -39,13 +39,24 @@ if __name__ == "__main__":
         gray = cv2.flip(gray, -1)
         gray = cv2.flip(gray, 1)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-
+        
 
 
         for (x,y,w,h) in faces:
             gray = cv2.rectangle(gray,(x,y),(x+w,y+h),(255,0,0),2)
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]
+
+
+            turn_x  = float(x - (gray.size().width/2))
+            turn_y  = float(y - (gray.size().height/2))
+
+            turn_x   *= 2.5 # VFOV
+            turn_y   *= 2.5 # HFOV
+            cam_pan  += -turn_x
+            cam_tilt += turn_y
+            pan(cam_pan) # Turn the camera to the default position
+            tilt(cam_tilt)
             
         rasimage = gray
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
