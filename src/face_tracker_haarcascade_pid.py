@@ -44,7 +44,7 @@ if __name__ == "__main__":
     time_prev = 0.
     dt_sleep = 0.01
 
-    while True:
+    while cap is not None:
         ret, img = cap.read()
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.flip(gray, -1)
