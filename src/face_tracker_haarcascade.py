@@ -49,13 +49,13 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
 
 
-            turn_x  = x - (width/2.0)
-            turn_y  = y - (height/2.0)
+            turn_x  = (x+w/2.0) - (width/2.0)
+            turn_y  = (y+h/2.0) - (height/2.0)
 
             turn_x   /= (width/2.0) # VFOV
             turn_y   /= (height/2.0) # HFOV
-            cam_pan  += -turn_x
-            cam_tilt += turn_y
+            cam_pan  += -turn_x * 2
+            cam_tilt += turn_y * 2
 
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
