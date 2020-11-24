@@ -52,8 +52,8 @@ if __name__ == "__main__":
             turn_x  = x - (width/2.0)
             turn_y  = y - (height/2.0)
 
-            turn_x   /= 180.0 # VFOV
-            turn_y   /= 180.0 # HFOV
+            turn_x   /= (width/2.0) # VFOV
+            turn_y   /= (height/2.0) # HFOV
             cam_pan  += -turn_x
             cam_tilt += turn_y
 
