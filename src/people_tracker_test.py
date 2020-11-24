@@ -58,8 +58,8 @@ class sub_center_position:
 
 # Set up the capture with our frame size
 video_capture = cv2.VideoCapture(0)
-#video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,  FRAME_W)
-#video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, FRAME_H)
+#video_capture.set(cv2.CV_CAP_PROP_FRAME_WIDTH,  FRAME_W)
+#video_capture.set(cv2.CV_CAP_PROP_FRAME_HEIGHT, FRAME_H)
 
 video_capture.set(cv2.CAP_PROP_FRAME_WIDTH,  FRAME_W)
 video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_H)
@@ -105,7 +105,7 @@ if __name__ == "__main__":
             scaleFactor=1.1,
             minNeighbors=4,
             minSize=(20, 20),
-            flags=cv2.cv.CV_HAAR_SCALE_IMAGE | cv2.cv.CV_HAAR_FIND_BIGGEST_OBJECT | cv2.cv.CV_HAAR_DO_ROUGH_SEARCH
+            flags=cv2.CV_HAAR_SCALE_IMAGE | cv2.CV_HAAR_FIND_BIGGEST_OBJECT | cv2.CV_HAAR_DO_ROUGH_SEARCH
         )
         
         lights(50 if len(faces) == 0 else 0, 50 if len(faces) > 0 else 0,0,50)
