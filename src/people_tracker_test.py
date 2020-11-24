@@ -36,15 +36,13 @@ faceCascade = cv2.CascadeClassifier(cascPath)
  
 start_time = datetime.now()
  
-# 계산 반복 횟수 (한번만 처리하려면 아래를 1로 하거나 for문을 제거하세요)
-iteration_count = 100
 
 video_capture = cv2.VideoCapture(0)
 
 # video_capture.set(cv2.CAP_PROP_FRAME_WIDTH,  FRAME_W)
 # video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_H)
 
-for cnt in range(0, iteration_count):
+while video_capture is not None:
  
     # Read the image
     ret, image = video_capture.read()
@@ -61,16 +59,17 @@ for cnt in range(0, iteration_count):
     # 검출된 얼굴 주변에 사각형 그리기
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    
+
+    cv2.imshow("Face Detected", image)
  
-end_time = datetime.now()
-elapsed_time = end_time - start_time
-average_time = elapsed_time / iteration_count
- 
-print "Elapsed Time: %s sec" % elapsed_time
-print "Average Time: %s sec" % average_time
- 
-# 얼굴을 검출한 이미지를 화면에 띄웁니다
-cv2.imshow("Face Detected", image)
- 
-# 아무 키나 누르면 빠져나옵니다
-cv2.waitKey(0)
+    end_time = datetime.now()
+    elapsed_time = end_time - start_time
+    
+    print "Elapsed Time: %s sec" % elapsed_time
+    
+    # 얼굴을 검출한 이미지를 화면에 띄웁니다
+    cv2.imshow("Face Detected", image)
+    
+    # 아무 키나 누르면 빠져나옵니다
+    cv2.waitKey(0)
