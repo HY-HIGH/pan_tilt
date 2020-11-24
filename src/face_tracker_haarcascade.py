@@ -49,8 +49,8 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
 
 
-            turn_x  = x - (height/2.0)
-            turn_y  = y - (width/2.0)
+            turn_x  = x - (width/2.0)
+            turn_y  = y - (height/2.0)
 
             turn_x   /= 180.0 # VFOV
             turn_y   /= 180.0 # HFOV
