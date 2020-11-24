@@ -2,8 +2,9 @@
         최종 수정  2020년 11월 24일
 
 ## 0.환경 설정
-본 코드를 작성할때 사용한 하드웨어는 라즈베리파이3 B+, raspberry pi camera, Pimoroni pan tilt HAT full kit 을 사용하였음.  
-다른 카메라를 사용하여 제어하려면 코드를 수정해야함.  
+본 코드를 작성할때 사용한 환경은 다음과 같음.
+하드웨어 : 라즈베리파이3 B+, raspberry pi camera, Pimoroni pan tilt HAT full kit
+OS : Ubuntu MATE 18.04
 
 ###  Enable the i2c interface as well as the camera interface
 
