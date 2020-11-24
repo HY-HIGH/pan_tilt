@@ -36,7 +36,7 @@ if __name__ == "__main__":
     tilt(cam_tilt)
     light_mode(WS2812)
 
-    pid = PID(5, 0.8, 0.5)
+    pid = PID(4, 0.8, 0.5)
 
     start_time = time.time()
     error_x_prev = 0.
