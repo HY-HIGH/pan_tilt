@@ -61,7 +61,7 @@ if __name__ == "__main__":
             error_x  /= (width/2.0) # VFOV
             error_y  /= (height/2.0) # HFOV
 
-            cam_pan  += -error_x * 5
+            cam_pan  += error_x * 5
             cam_tilt += error_y * 5
 
             pan(cam_pan) # Turn the camera to the default position
