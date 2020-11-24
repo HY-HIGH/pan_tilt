@@ -48,8 +48,8 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
             
         rasimage = gray
-        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="CV_8UC1")
-        rasimage_msg.encoding="rgb8"
+        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
+        rasimage_msg.encoding="mono8"
         rasimage_pub.publish(rasimage_msg)
 
         # cv2.imshow('img',img)
