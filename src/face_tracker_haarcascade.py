@@ -38,7 +38,7 @@ if __name__ == "__main__":
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.flip(gray, -1)
         gray = cv2.flip(gray, 1)
-        faces = face_cascade.detectMultiScale(gray, 1.5, 5)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
 
 
