@@ -38,7 +38,7 @@ if __name__ == "__main__":
         height, width, channels = img.shape 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.flip(gray, -1)
-        gray = cv2.flip(gray, 1)
+        # gray = cv2.flip(gray, 1)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         
 
@@ -54,8 +54,8 @@ if __name__ == "__main__":
 
             turn_x   /= 180.0 # VFOV
             turn_y   /= 180.0 # HFOV
-            cam_pan  += -turn_x
-            cam_tilt += turn_y
+            cam_pan  += turn_x
+            cam_tilt += -turn_y
 
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
