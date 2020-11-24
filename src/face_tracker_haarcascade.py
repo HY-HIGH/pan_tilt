@@ -60,8 +60,9 @@ if __name__ == "__main__":
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
             
-            print("x : ", cam_pan)
-            print("y : ", cam_tilt)
+            print("width : ",width , "height : ", height)
+            print("box_x : ",x , "box_y : ", y)
+            print("x : ", cam_pan, "y : ", cam_tilt)
         rasimage = gray
         rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
         rasimage_msg.encoding="mono8"
