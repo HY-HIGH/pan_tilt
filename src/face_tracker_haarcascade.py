@@ -48,8 +48,8 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
 
 
-            turn_x  = float(x - (float(gray.size().width)/2))
-            turn_y  = float(y - (float(gray.size().height)/2))
+            turn_x  = float(float(x) - (float(gray.size().width)/2))
+            turn_y  = float(float(y) - (float(gray.size().height)/2))
 
             turn_x   *= 2.5 # VFOV
             turn_y   *= 2.5 # HFOV
