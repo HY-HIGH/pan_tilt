@@ -54,8 +54,8 @@ if __name__ == "__main__":
 
             turn_x   /= (width/2.0) # VFOV
             turn_y   /= (height/2.0) # HFOV
-            cam_pan  += -turn_x * 2
-            cam_tilt += turn_y * 2
+            cam_pan  += -turn_x * 5
+            cam_tilt += turn_y * 5
 
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
