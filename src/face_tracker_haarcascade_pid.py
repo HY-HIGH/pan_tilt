@@ -69,21 +69,22 @@ if __name__ == "__main__":
             # cam_pan  += error_x * 5
             # cam_tilt += error_y * 5
             # pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
-            print(time_cur, " ", time_prev, " ", dt)
-            print(pid.kP * error_x, " ", pid.kD * de_x / dt, " ", pid.kI * error_x * dt)
-            cam_pan  += pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
-            cam_tilt += pid.kP * error_y + pid.kD * de_y / dt + pid.kI * error_y * dt
+            # print(time_cur, " ", time_prev, " ", dt)
+            # print(pid.kP * error_x, " ", pid.kD * de_x / dt, " ", pid.kI * error_x * dt)
+            if dt < 10 :
+                cam_pan  += pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
+                cam_tilt += pid.kP * error_y + pid.kD * de_y / dt + pid.kI * error_y * dt
 
-            pan(cam_pan) # Turn the camera to the default position
-            tilt(cam_tilt)
+                pan(cam_pan) # Turn the camera to the default position
+                tilt(cam_tilt)
             
             error_x_prev = error_x
             error_y_prev = error_y
             time_prev = time_cur
 
-            print("width : ",width , "height : ", height)
-            print("box_x : ",x , "box_y : ", y)
-            print("x : ", cam_pan, "y : ", cam_tilt)
+            # print("width : ",width , "height : ", height)
+            # print("box_x : ",x , "box_y : ", y)
+            # print("x : ", cam_pan, "y : ", cam_tilt)
 
         # rasimage = gray
         # rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
