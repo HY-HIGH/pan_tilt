@@ -48,7 +48,7 @@ if __name__ == "__main__":
             roi_color = img[y:y+h, x:x+w]
             
         rasimage = gray
-        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="passthrough")
+        rasimage_msg = bridge.cv2_to_imgmsg(rasimage, encoding="mono16")
         rasimage_msg.encoding="rgb8"
         rasimage_pub.publish(rasimage_msg)
 
