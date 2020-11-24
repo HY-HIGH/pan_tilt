@@ -91,7 +91,7 @@ if __name__ == "__main__":
         # rasimage_msg.encoding="mono8"
         # rasimage_pub.publish(rasimage_msg)
 
-        cv2.imshow('img',img)
+        cv2.imshow('img',gray)
         time.sleep(dt_sleep)
 
         k = cv2.waitKey(30) & 0xff
