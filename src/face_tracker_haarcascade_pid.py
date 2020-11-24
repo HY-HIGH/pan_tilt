@@ -69,7 +69,7 @@ if __name__ == "__main__":
             # cam_pan  += error_x * 5
             # cam_tilt += error_y * 5
             # pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
-
+            print(pid.kP * error_x, " ", pid.kD * de_x / dt, " ", pid.kI * error_x * dt)
             cam_pan  += pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
             cam_tilt += pid.kP * error_y + pid.kD * de_y / dt + pid.kI * error_y * dt
 
