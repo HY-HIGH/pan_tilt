@@ -58,11 +58,18 @@ if __name__ == "__main__":
 
             error_x  = (x+w/2.0) - (width/2.0)
             error_y  = (y+h/2.0) - (height/2.0)
+
+            de_x = error_x - error_x_prev
+            de_y = error_y - error_y_prev
+            dt = time.time() - time_prev
+
             error_x  /= (width/2.0) # VFOV
             error_y  /= (height/2.0) # HFOV
 
-            cam_pan  += error_x * 5
-            cam_tilt += error_y * 5
+            # pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
+
+            cam_pan  += pid.kP * error_x + pid.kD * de_x / dt + pid.kI * error_x * dt
+            cam_tilt += pid.kP * error_y + pid.kD * de_y / dt + pid.kI * error_y * dt
 
             pan(cam_pan) # Turn the camera to the default position
             tilt(cam_tilt)
