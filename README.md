@@ -17,7 +17,8 @@ OS : Ubuntu MATE 18.04
 
 ## 1.사용방법
 본 repository를 clone한 뒤 src 폴더 내에있는 face_tracker_haarcascade_pid.py를 실행하면됨.  
-
+        
+        $ cd ~/catkin_ws/src
         $ git clone https://github.com/HY-HIGH/pan_tilt.git  
         $ chmod +x /src/face_tracker_haarcascade_pid.py  
         $ python /src/face_tracker_haarcascade_pid.py  
